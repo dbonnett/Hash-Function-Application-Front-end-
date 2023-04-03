@@ -7,14 +7,14 @@
     <p>Coefficient: </p>
     <input type="number" v-model="coefficient"/>
     <p>Seed: </p>
-    <input type="number" v-model="seed"/>
+    <input type="number" max="sizeOfTable" v-model="seed"/>
 
     <p>Formula: hash = ({{ coefficient }} * hash * charAt(i)) % {{ sizeOfTable }}</p>
     <p>Enter a word</p>
     <input type="text" v-model="word">
     <p>Hash Value: {{ hash }}</p>
     <div class="table">
-    <div v-for="num in table" :key="num" class="element">h</div>
+      <div v-for="num in table" :key="num" class="element">h</div>
     </div>
   </div>
 </template>
@@ -54,7 +54,15 @@ export default {
       color: red;
     }
     
-    .element {
+    .table {
+      width: 100%;
+      display: flex;
       flex-direction: row;
+      border: 1px;
+      justify-content: space-around;
+    }
+    
+    .table:nth-child(hash()) {
+      color: red;
     }
 </style>
