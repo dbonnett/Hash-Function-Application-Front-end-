@@ -13,8 +13,9 @@
     <p>Enter a word</p>
     <input type="text" v-model="word">
     <p>Hash Value: {{ hash }}</p>
+    <div class="space"></div>
     <div class="table">
-      <div v-for="num in table" :key="num" class="element">h</div>
+      <div v-for="num in table" :key="num" class="element">{{ num }}</div>
     </div>
   </div>
 </template>
@@ -24,7 +25,7 @@ export default {
     name: 'FormulaInput',
     data() {
       return {
-        sizeOfTable: 100,
+        sizeOfTable: 60,
         coefficient: 13,
         seed: 7,
         word: ""
@@ -39,19 +40,24 @@ export default {
         return h;
       },
       table() {
-        return Array(this.sizeOfTable);
+        let tab = Array(this.sizeOfTable);
+        for(let i = 0; i < this.sizeOfTable; i++) {
+          tab[i] = i + 1;
+        }
+        return tab;
       }
     }
 }
 </script>
 
 <style>
-    p {
-        size: 16;
-    }
 
     .selected {
       color: red;
+    }
+    
+    .element {
+      font-size: 16px;
     }
     
     .table {
@@ -62,7 +68,12 @@ export default {
       justify-content: space-around;
     }
     
-    .table:nth-child(hash()) {
+    .element:nth-child(.element:nth-child(hash)) {
       color: red;
+      font-size: 20px;
+    }
+    
+    .space {
+      height: 100px;
     }
 </style>
