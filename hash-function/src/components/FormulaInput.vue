@@ -15,6 +15,9 @@
     <p>Hash Value: {{ hash }}</p>
     <div class="space"></div>
     <div class="table">
+      <div v-for="num in table" :key="num" class="bar"></div>
+    </div>
+    <div class="table">
       <div v-for="num in table" :key="num" class="element">{{ num }}</div>
     </div>
   </div>
@@ -28,7 +31,8 @@ export default {
         sizeOfTable: 60,
         coefficient: 13,
         seed: 7,
-        word: ""
+        word: "",
+        test: "15px"
       }
     },
     computed: {
@@ -61,19 +65,28 @@ export default {
     }
     
     .table {
-      width: 100%;
+      width: 90%;
+      margin: auto;
       display: flex;
       flex-direction: row;
       border: 1px;
       justify-content: space-around;
     }
     
-    .element:nth-child(.element:nth-child(hash)) {
+    .element:nth-child() {
       color: red;
       font-size: 20px;
     }
     
     .space {
       height: 100px;
+    }
+    
+    .bar {
+      height: var(--test);
+      width: 10px;
+      padding: none;
+      margin: 1px;
+      background-color: green;
     }
 </style>
